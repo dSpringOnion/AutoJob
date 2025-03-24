@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Job Hunting Tool</title>
+    <!-- Link to CSS file -->
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='styles.css') }}"
+    />
+  </head>
+  <body>
+    <h1>Job Hunting Tool</h1>
+
+    <form action="/" method="get">
+      <label for="keyword">Enter Job Keyword:</label>
+      <input type="text" id="keyword" name="keyword" required />
+      <label for="location">Enter Location:</label>
+      <input type="text" id="location" name="location" required />
+      <button type="submit">Search</button>
+    </form>
+
+    {% if jobs %}
+    <h2>Job Listings:</h2>
+    <ul>
+      {% for job in jobs %}
+      <li>
+        <a href="{{ job['link'] }}">{{ job['title'] }}</a>
+      </li>
+      {% endfor %}
+    </ul>
+    {% else %}
+    <p>No jobs found.</p>
+    {% endif %}
+
+    <!-- Link to JavaScript file -->
+    <script src="{{ url_for('static', filename='scripts.js') }}"></script>
+  </body>
+</html>
